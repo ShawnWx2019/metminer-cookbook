@@ -1,13 +1,67 @@
 [
   {
-    "objectID": "content/dam.html",
-    "href": "content/dam.html",
-    "title": "Different Accumulated Metabolite Analysis",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MetMiner cookbook",
     "section": "",
-    "text": "Different Accumulated Metabolite Analysis",
+    "text": "Project\nMetMiner: An Integrated Pipeline for Large-Scale Metabolomics Data Processing and Data Mining.\nThis is the documentation of MetMiner. You can get up-to-date verison from the GitHub repository https://github.com/ShawnWx2019/MetMiner.\nIn this workflow, tidyMass @shenTidyMassObjectorientedReproducible2022b and HPC-tidymass takes on the majority of the upstream data analysis, data cleaning, and metabolite annotation tasks.\nFurthermore, we have developed a Metabolomics Downstream Analysis toolkit MDAtoolkits and a user-friendly WGCNA Shiny app. They are responsible for the downstream analysis and data mining section.\n\n\nCitation\nIf you have utilized MetMiner in your project, please cite:\n\nXiao Wang, Shuang Liang, Wenqi Yang, Bing Zhao, Ke Yu, Fei Liang, Luis A. J. Mur, Jeremy A, Roberts, Junli Zhang,and Xuebin Zhang. 2024 “MetMiner: An integrated pipeline for large-scale screening of regulators in plant metabolism.”\nShen, Xiaotao, Hong Yan, Chuchu Wang, Peng Gao, Caroline H. Johnson, and Michael P. Snyder. 2022. “TidyMass an Object-Oriented Reproducible Analysis Framework for LC Data.” Nature Communications 13 (1): 4365. https://doi.org/10.1038/s41467-022-32155-w.",
+    "crumbs": [
+      "About"
+    ]
+  },
+  {
+    "objectID": "content/pre_targeted.html",
+    "href": "content/pre_targeted.html",
+    "title": "Pseudotargeted metabolomics",
+    "section": "",
+    "text": "Pseudotargeted metabolomics",
+    "crumbs": [
+      "Upstream data processing",
+      "Pseudotargeted  method"
+    ]
+  },
+  {
+    "objectID": "content/feature_dedup.html",
+    "href": "content/feature_dedup.html",
+    "title": "Feature deduplication",
+    "section": "",
+    "text": "Feature deduplication",
     "crumbs": [
       "Downstream data processing",
-      "DAM analysis"
+      "Feature deduplication"
+    ]
+  },
+  {
+    "objectID": "content/Untargeted_method.html",
+    "href": "content/Untargeted_method.html",
+    "title": "Untargeted metabolomics data process.",
+    "section": "",
+    "text": "This Shiny application is developed based on the tidyMass package, specifically designed for the analysis of non-targeted/targeted metabolomics data. Dr. Xiaotao Shen’s tidyMass is an excellent open-source software tailored for metabolomics data processing. It adheres to the tidyverse development philosophy, significantly enhancing code readability. Additionally, the newly added mass_dataset object makes the metabolomics data analysis process more transparent and reproducible.\nTo make tidyMass accessible to non-programmers in the field of metabolomics research, we developed this Shiny application. We integrated data visualization capabilities into the downstream analysis workflow to facilitate a more intuitive observation and presentation of the analysis results. Considering hardware limitations, we recommend using this Shiny app when the number of samples is fewer than 30.\n\n\n\nOpen the website https://github.com/ShawnWx2019/MDAtoolkits-interactive.\n\nDownload the Shiny app file (test_allinone_saved.R).\n\nOpen the project in RStudio, click on Install and install the required R packages. After installation is complete, click Run App to launch the application.\n\n\n\n\nAfter clicking Run App, the software interface will open in the default web browser. You will be able to see the analysis functions, workflow, citation information, and more provided by the software, as shown in the following image:\n\n\n\n\n\n\n\nSet working directory.\nUpload sample information file (must be a .csv file).\nIf there are changes in column names when preparing sample information, you can click the dropdown button to correspond to them.\nCheck sample information.\n\n\n\n\n\nClick the dropdown button Import file and upload MS1, MS2 files, as shown in the structure below. Click the 1. Check input file button to check the data.\n\n\n\n\n\nAfter confirming correctness, click the 2. Peak picking button for peak picking. This is a relatively lengthy process, and the progress bar will be displayed in the bottom right corner.\n\n\n\n\nData cleaning includes: noise removal, outlier removal, missing value imputation, and data standardization.\n\n\n\nFirst, adjust the parameters for grouping, samples, and QC missing frequency on the left side, click Find noisy features to identify noisy features, and then click Remove and update to update the data.\n\n\n\n\nFirst, adjust the parameters on the left side, click Find outliers to identify outliers, and then click Remove and update to update the data.。\n\n\n\n\nSelect the method for missing value imputation, such as: knn, rf, mean, median, zero, bpca, ppca, etc., click Start to proceed with imputation.\n\n\n\n\nFirst, adjust the method for filling missing values on the left side, such as “svr”, “mean”, “pqn”, “ppca”, etc., click Start normalization to standardize the data. Then click Visualize to visualize the data before and after normalization.\n\n\n\n\n\n\n\nWe have built-in some publicly available MS1 and MS/MS databases, which can be selected in the parameters column on the left side. You can also use Tidymass to build your own database, which needs to be in .rda format. After setting the parameters, click Start annotation.\n\n\n\n\nFirst, select hydrophilic interaction chromatography (HILIC) or reverse phase chromatography (RP), then choose the ion mode, and finally select the filtering method for annotation. For multiple annotations: you can choose to retain all, retain those with high scores, or retain the first annotation. For removing redundant annotations: you can choose to retain all or retain the first annotation. You can also filter annotations based on accuracy: you can choose to retain all or those with higher accuracy (1,2). After the parameters are set, click the Start annotation filtering button to filter annotations.\n\n\n\n\n\n\n\n\n\n\nhpc-runTidymass -h\nTidymass pipeline part1. Date transform ,peak picking and annotation\nUsage:\n-------------------------------\nhpc-runTidymass [-i input] [-t type] [-s sample_info] [-g heterogeneous] [-c column]\n-------------------------------\nAuthor Shawn Wang (shawnwang2016@126.com)\n-------------------------------\n\nDate Wed Nov 29, 2023\n-------------------------------\n\nVersion V.0.0.1\n-------------------------------\n\nDescription\n-------------------------------\n\n[-i]:input,   The file path of .raw data\n[-t]:type,  The type of ion model, 1: NEG+POS in one file, 2: NEG and POS in differnet files, default: 1\n[-g]:heterogeneous,  samples from different tissues(or species) or not, yes | no, default : no\n[-s]:sample_info,  sample information. see tidymass manual\n[-c]:column,  rp or hilic, default: rp\n\n\n\n\n\nThe sample information must include at least the following five columns:\n\nsample_id: Sample ID, a unique identifier for each sample.\ninjection_order: Sample injection order, which records the sequence of sample processing in the experiment.\nclass: Sample classification, which can include types such as Blank (blank samples), QC (quality control samples), or Subject (experimental samples).\ngroup: Group information used to differentiate sample populations, such as case (case group) or control (control group).\nbatch: Batch effect information, which marks the batch to which a sample belongs, such as 1, 2, 3, etc.\n\nFor more details on sample information, you can visit the TidyMass official website.\n\n\n\n\n\nThe .raw file contains post-run data, including two subfolders: “NEG” and “POS.” Both of these subfolders contain quality control (QC) files and sample files. The file naming convention is as follows:\n\nQuality control files: Begin with “QC_.”\nSample files: Begin with “S_.”\n\nThe file naming and structure are as follows:\n32.CH/\n├── cw_methodt_mrm_chenhui.xlsx\n├── NEG\n│   ├── QC_01.raw\n│   ├── QC_02.raw\n│   ├── QC_07.raw\n│   ├── QC_08.raw\n│   ├── S_01.raw\n│   ├── S_02.raw\n│   ├── S_03.raw\n│   ├── S_04.raw\n│   ├── S_05.raw\n│   └── S_06.raw\n└── POS\n    ├── QC_01.raw\n    ├── QC_02.raw\n    ├── QC_07.raw\n    ├── QC_08.raw\n    ├── S_01.raw\n    ├── S_02.raw\n    ├── S_03.raw\n    ├── S_04.raw\n    ├── S_05.raw\n    └── S_06.raw\n\n\n\n\nhpc-runTidymass -i 32.CH/ -t 2 -g no -c rp -s 32.CH/sampe_info.txt\n-i : input,   The file path of .raw data.\n-t : type,  The type of ion model, 1: NEG+POS in one file, 2: NEG and POS in differnet files, default: 1.\n-g : heterogeneous,  samples from different tissues(or species) or not, yes | no, default : no.\n-c : column,  rp or hilic, default: rp.\n-s : sample_info,  sample information. see tidymass manual.\n\n\n\nThe analysis yielded the following results:\n./working_dir/\n├── 01.data\n│   └── rawdata\n│       ├── injection_order_neg.txt\n│       ├── injection_order_pos.txt\n│       ├── mrm_chenhui.xlsx\n│       ├── NEG\n│       │   ├── QC\n│       │   │   ├── QC_01.raw\n│       │   │   ├── QC_02.raw\n│       │   │   ├── QC_07.raw\n│       │   │   └── QC_08.raw\n│       │   └── Subject\n│       │       ├── S_01.raw\n│       │       ├── S_02.raw\n│       │       ├── S_03.raw\n│       │       ├── S_04.raw\n│       │       ├── S_05.raw\n│       │       └── S_06.raw\n│       ├── POS\n│       │   ├── QC\n│       │   │   ├── QC_01.raw\n│       │   │   ├── QC_02.raw\n│       │   │   ├── QC_07.raw\n│       │   │   └── QC_08.raw\n│       │   └── Subject\n│       │       ├── S_01.raw\n│       │       ├── S_02.raw\n│       │       ├── S_03.raw\n│       │       ├── S_04.raw\n│       │       ├── S_05.raw\n│       │       └── S_06.raw\n│       └── sampe_info.txt\n├── 02.progress\n│   ├── Annotation\n│   │   ├── Feature_filtering\n│   │   │   ├── 01.Filtered_FeatureAnnotation.xlsx\n│   │   │   ├── 02.Filtered_FeatureAccumulationMatrix.xlsx\n│   │   │   └── 03.Filtered_Sample_info.xlsx\n│   │   ├── NEG -&gt; ../transform/MS2/NEG/\n│   │   ├── object_neg_anno.rds\n│   │   ├── object_neg.ms2.rds\n│   │   ├── object_neg.rds -&gt; ../Data_cleaning/object_neg.rds\n│   │   ├── object_pos_anno.rds\n│   │   ├── object_pos.ms2.rds\n│   │   ├── object_pos.rds -&gt; ../Data_cleaning/object_pos.rds\n│   │   ├── Original_annotation\n│   │   │   ├── 01.Original_FeatureAnnotation.xlsx\n│   │   │   ├── 02.Original_FeatureAccumulationMatrix.xlsx\n│   │   │   └── 03.Original_Sample_info.xlsx\n│   │   ├── POS -&gt; ../transform/MS2/POS/\n│   │   ├── RemoveRedundancy\n│   │   │   ├── Final_annotation.xlsx\n│   │   │   ├── metadata_deduplicate_cw_method.xlsx\n│   │   │   ├── metadata.xlsx\n│   │   │   ├── NEG_final_rest.xlsx\n│   │   │   ├── Non_redundant_feature.xlsx\n│   │   │   └── POS_final_rest.xlsx\n│   │   └── semi_annotation\n│   │       └── semi_annotation.xlsx\n│   ├── Data_cleaning\n│   │   ├── 01.raw\n│   │   │   ├── NEG\n│   │   │   │   ├── missing_value_distribution.pdf\n│   │   │   │   ├── missing_value_distribution.png\n│   │   │   │   ├── object.neg\n│   │   │   │   ├── peak_distribution_plt.neg.pdf\n│   │   │   │   ├── peak_distribution_plt.neg.png\n│   │   │   │   ├── raw_peak_boxplot.neg.pdf\n│   │   │   │   └── raw_peak_boxplot.neg.png\n│   │   │   └── POS\n│   │   │       ├── missing_value_distribution.pdf\n│   │   │       ├── missing_value_distribution.png\n│   │   │       ├── object.pos\n│   │   │       ├── peak_distribution_plt.pos.pdf\n│   │   │       ├── peak_distribution_plt.pos.png\n│   │   │       ├── raw_peak_boxplot.pos.pdf\n│   │   │       └── raw_peak_boxplot.pos.png\n│   │   ├── 02.remove_noise\n│   │   │   ├── NEG\n│   │   │   │   ├── object.neg.mv\n│   │   │   │   ├── plt_mv_remove_noise.neg.pdf\n│   │   │   │   ├── plt_mv_remove_noise.neg.png\n│   │   │   │   ├── plt_mv_remove_outlier.neg.pdf\n│   │   │   │   └── plt_mv_remove_outlier.neg.png\n│   │   │   └── POS\n│   │   │       ├── object.pos.mv\n│   │   │       ├── plt_mv_remove_noise.pos.pdf\n│   │   │       ├── plt_mv_remove_noise.pos.png\n│   │   │       ├── plt_mv_remove_outlier.pos.pdf\n│   │   │       └── plt_mv_remove_outlier.pos.png\n│   │   ├── 03.impute_mv\n│   │   │   ├── NEG\n│   │   │   │   └── object.neg.impute\n│   │   │   └── POS\n│   │   │       └── object.pos.impute\n│   │   ├── 04.normalization\n│   │   │   ├── NEG\n│   │   │   │   ├── object_inte_neg\n│   │   │   │   ├── plt_pca_BandA_norm.pdf\n│   │   │   │   ├── plt_pca_BandA_norm.png\n│   │   │   │   ├── plt_rsd_BandA.pdf\n│   │   │   │   └── plt_rsd_BandA.png\n│   │   │   └── POS\n│   │   │       ├── object_inte_pos\n│   │   │       ├── plt_pca_BandA_norm.pdf\n│   │   │       ├── plt_pca_BandA_norm.png\n│   │   │       ├── plt_rsd_BandA.pdf\n│   │   │       └── plt_rsd_BandA.png\n│   │   ├── injection_order_neg.txt -&gt; ../../01.data/rawdata/injection_order_neg.txt\n│   │   ├── injection_order_pos.txt -&gt; ../../01.data/rawdata/injection_order_pos.txt\n│   │   ├── object.neg -&gt; ../peak_picking/object.neg\n│   │   ├── object_neg.rds\n│   │   ├── object.pos -&gt; ../peak_picking/object.pos\n│   │   ├── object_pos.rds\n│   │   └── Rplots.pdf\n│   ├── peak_picking\n│   │   ├── NEG\n│   │   │   └── Result\n│   │   │       ├── BPC.pdf\n│   │   │       ├── intermediate_data\n│   │   │       │   ├── bpc.plot\n│   │   │       │   ├── massprocesser_parameters\n│   │   │       │   ├── raw_data\n│   │   │       │   ├── tic.plot\n│   │   │       │   ├── xdata\n│   │   │       │   ├── xdata2\n│   │   │       │   └── xdata3\n│   │   │       ├── object\n│   │   │       ├── Peak_table.csv\n│   │   │       ├── Peak_table_for_cleaning.csv\n│   │   │       ├── RT correction plot.pdf\n│   │   │       └── TIC.pdf\n│   │   ├── object.neg\n│   │   ├── object.pos\n│   │   └── POS\n│   │       └── Result\n│   │           ├── BPC.pdf\n│   │           ├── intermediate_data\n│   │           │   ├── bpc.plot\n│   │           │   ├── massprocesser_parameters\n│   │           │   ├── raw_data\n│   │           │   ├── tic.plot\n│   │           │   ├── xdata\n│   │           │   ├── xdata2\n│   │           │   └── xdata3\n│   │           ├── object\n│   │           ├── Peak_table.csv\n│   │           ├── Peak_table_for_cleaning.csv\n│   │           ├── RT correction plot.pdf\n│   │           └── TIC.pdf\n│   └── transform\n│       ├── MS1\n│       │   ├── NEG\n│       │   │   ├── QC\n│       │   │   │   ├── QC_01.mzXML\n│       │   │   │   ├── QC_02.mzXML\n│       │   │   │   ├── QC_07.mzXML\n│       │   │   │   └── QC_08.mzXML\n│       │   │   └── Subject\n│       │   │       ├── S_01.mzXML\n│       │   │       ├── S_02.mzXML\n│       │   │       ├── S_03.mzXML\n│       │   │       ├── S_04.mzXML\n│       │   │       ├── S_05.mzXML\n│       │   │       └── S_06.mzXML\n│       │   └── POS\n│       │       ├── QC\n│       │       │   ├── QC_01.mzXML\n│       │       │   ├── QC_02.mzXML\n│       │       │   ├── QC_07.mzXML\n│       │       │   └── QC_08.mzXML\n│       │       └── Subject\n│       │           ├── S_01.mzXML\n│       │           ├── S_02.mzXML\n│       │           ├── S_03.mzXML\n│       │           ├── S_04.mzXML\n│       │           ├── S_05.mzXML\n│       │           └── S_06.mzXML\n│       └── MS2\n│           ├── NEG\n│           │   ├── QC\n│           │   │   ├── QC_01.mgf\n│           │   │   ├── QC_02.mgf\n│           │   │   ├── QC_07.mgf\n│           │   │   └── QC_08.mgf\n│           │   └── Subject\n│           │       ├── S_01.mgf\n│           │       ├── S_02.mgf\n│           │       ├── S_03.mgf\n│           │       ├── S_04.mgf\n│           │       ├── S_05.mgf\n│           │       └── S_06.mgf\n│           └── POS\n│               ├── QC\n│               │   ├── QC_01.mgf\n│               │   ├── QC_02.mgf\n│               │   ├── QC_07.mgf\n│               │   └── QC_08.mgf\n│               └── Subject\n│                   ├── S_01.mgf\n│                   ├── S_02.mgf\n│                   ├── S_03.mgf\n│                   ├── S_04.mgf\n│                   ├── S_05.mgf\n│                   └── S_06.mgf\n└── 03.result\n\n52 directories, 154 files\nThe results after peak picking, data cleaning, removing redundancy, and annotation processing are stored at the following path:\n./working_dir/02.progress/Annotation/RemoveRedundancy/\n├── Final_annotation.xlsx\n├── metadata_deduplicate_cw_method.xlsx\n├── metadata.xlsx\n├── NEG_final_rest.xlsx\n├── Non_redundant_feature.xlsx\n└── POS_final_rest.xlsx\n\n0 directories, 6 files\n\n\n./working_dir/02.progress/Annotation/semi_annotation/\n└── semi_annotation.xlsx\n\n0 directories, 1 file\n\n\n\nThe Linux version, compared to the ShinyAPP, features fewer configuration parameters and offers simpler and faster operations, making it suitable for projects with more than 30 samples.\nIf parameter adjustments are needed during the analysis, you can modify the corresponding parameters in the .HPC_tidymass/src/R/ directory.\n.HPC_tidymass/src/R/\n├── 02.PeakPicking.R\n├── 04.DataCleaning.R\n├── 05.Metabolomics_annotation.R\n├── 06.Annotation_filtering.R\n├── 06.Annotation_rm_redundancy.R\n├── 06.Annotation_rm_redundancy_slide_window.R\n├── 07.Annotation_rm_redun_pos_neg.R\n├── 08.Annotation_rm_redun_cw.R\n├── 09.semi_annotation.R\n└── classifiy.R",
+    "crumbs": [
+      "Upstream data processing",
+      "Untargeted method"
+    ]
+  },
+  {
+    "objectID": "content/Untargeted_method.html#win-7-11",
+    "href": "content/Untargeted_method.html#win-7-11",
+    "title": "Untargeted metabolomics data process.",
+    "section": "",
+    "text": "This Shiny application is developed based on the tidyMass package, specifically designed for the analysis of non-targeted/targeted metabolomics data. Dr. Xiaotao Shen’s tidyMass is an excellent open-source software tailored for metabolomics data processing. It adheres to the tidyverse development philosophy, significantly enhancing code readability. Additionally, the newly added mass_dataset object makes the metabolomics data analysis process more transparent and reproducible.\nTo make tidyMass accessible to non-programmers in the field of metabolomics research, we developed this Shiny application. We integrated data visualization capabilities into the downstream analysis workflow to facilitate a more intuitive observation and presentation of the analysis results. Considering hardware limitations, we recommend using this Shiny app when the number of samples is fewer than 30.\n\n\n\nOpen the website https://github.com/ShawnWx2019/MDAtoolkits-interactive.\n\nDownload the Shiny app file (test_allinone_saved.R).\n\nOpen the project in RStudio, click on Install and install the required R packages. After installation is complete, click Run App to launch the application.\n\n\n\n\nAfter clicking Run App, the software interface will open in the default web browser. You will be able to see the analysis functions, workflow, citation information, and more provided by the software, as shown in the following image:\n\n\n\n\n\n\n\nSet working directory.\nUpload sample information file (must be a .csv file).\nIf there are changes in column names when preparing sample information, you can click the dropdown button to correspond to them.\nCheck sample information.\n\n\n\n\n\nClick the dropdown button Import file and upload MS1, MS2 files, as shown in the structure below. Click the 1. Check input file button to check the data.\n\n\n\n\n\nAfter confirming correctness, click the 2. Peak picking button for peak picking. This is a relatively lengthy process, and the progress bar will be displayed in the bottom right corner.\n\n\n\n\nData cleaning includes: noise removal, outlier removal, missing value imputation, and data standardization.\n\n\n\nFirst, adjust the parameters for grouping, samples, and QC missing frequency on the left side, click Find noisy features to identify noisy features, and then click Remove and update to update the data.\n\n\n\n\nFirst, adjust the parameters on the left side, click Find outliers to identify outliers, and then click Remove and update to update the data.。\n\n\n\n\nSelect the method for missing value imputation, such as: knn, rf, mean, median, zero, bpca, ppca, etc., click Start to proceed with imputation.\n\n\n\n\nFirst, adjust the method for filling missing values on the left side, such as “svr”, “mean”, “pqn”, “ppca”, etc., click Start normalization to standardize the data. Then click Visualize to visualize the data before and after normalization.\n\n\n\n\n\n\n\nWe have built-in some publicly available MS1 and MS/MS databases, which can be selected in the parameters column on the left side. You can also use Tidymass to build your own database, which needs to be in .rda format. After setting the parameters, click Start annotation.\n\n\n\n\nFirst, select hydrophilic interaction chromatography (HILIC) or reverse phase chromatography (RP), then choose the ion mode, and finally select the filtering method for annotation. For multiple annotations: you can choose to retain all, retain those with high scores, or retain the first annotation. For removing redundant annotations: you can choose to retain all or retain the first annotation. You can also filter annotations based on accuracy: you can choose to retain all or those with higher accuracy (1,2). After the parameters are set, click the Start annotation filtering button to filter annotations.",
+    "crumbs": [
+      "Upstream data processing",
+      "Untargeted method"
+    ]
+  },
+  {
+    "objectID": "content/Untargeted_method.html#ubuntu-20.04",
+    "href": "content/Untargeted_method.html#ubuntu-20.04",
+    "title": "Untargeted metabolomics data process.",
+    "section": "",
+    "text": "hpc-runTidymass -h\nTidymass pipeline part1. Date transform ,peak picking and annotation\nUsage:\n-------------------------------\nhpc-runTidymass [-i input] [-t type] [-s sample_info] [-g heterogeneous] [-c column]\n-------------------------------\nAuthor Shawn Wang (shawnwang2016@126.com)\n-------------------------------\n\nDate Wed Nov 29, 2023\n-------------------------------\n\nVersion V.0.0.1\n-------------------------------\n\nDescription\n-------------------------------\n\n[-i]:input,   The file path of .raw data\n[-t]:type,  The type of ion model, 1: NEG+POS in one file, 2: NEG and POS in differnet files, default: 1\n[-g]:heterogeneous,  samples from different tissues(or species) or not, yes | no, default : no\n[-s]:sample_info,  sample information. see tidymass manual\n[-c]:column,  rp or hilic, default: rp\n\n\n\n\n\nThe sample information must include at least the following five columns:\n\nsample_id: Sample ID, a unique identifier for each sample.\ninjection_order: Sample injection order, which records the sequence of sample processing in the experiment.\nclass: Sample classification, which can include types such as Blank (blank samples), QC (quality control samples), or Subject (experimental samples).\ngroup: Group information used to differentiate sample populations, such as case (case group) or control (control group).\nbatch: Batch effect information, which marks the batch to which a sample belongs, such as 1, 2, 3, etc.\n\nFor more details on sample information, you can visit the TidyMass official website.\n\n\n\n\n\nThe .raw file contains post-run data, including two subfolders: “NEG” and “POS.” Both of these subfolders contain quality control (QC) files and sample files. The file naming convention is as follows:\n\nQuality control files: Begin with “QC_.”\nSample files: Begin with “S_.”\n\nThe file naming and structure are as follows:\n32.CH/\n├── cw_methodt_mrm_chenhui.xlsx\n├── NEG\n│   ├── QC_01.raw\n│   ├── QC_02.raw\n│   ├── QC_07.raw\n│   ├── QC_08.raw\n│   ├── S_01.raw\n│   ├── S_02.raw\n│   ├── S_03.raw\n│   ├── S_04.raw\n│   ├── S_05.raw\n│   └── S_06.raw\n└── POS\n    ├── QC_01.raw\n    ├── QC_02.raw\n    ├── QC_07.raw\n    ├── QC_08.raw\n    ├── S_01.raw\n    ├── S_02.raw\n    ├── S_03.raw\n    ├── S_04.raw\n    ├── S_05.raw\n    └── S_06.raw\n\n\n\n\nhpc-runTidymass -i 32.CH/ -t 2 -g no -c rp -s 32.CH/sampe_info.txt\n-i : input,   The file path of .raw data.\n-t : type,  The type of ion model, 1: NEG+POS in one file, 2: NEG and POS in differnet files, default: 1.\n-g : heterogeneous,  samples from different tissues(or species) or not, yes | no, default : no.\n-c : column,  rp or hilic, default: rp.\n-s : sample_info,  sample information. see tidymass manual.\n\n\n\nThe analysis yielded the following results:\n./working_dir/\n├── 01.data\n│   └── rawdata\n│       ├── injection_order_neg.txt\n│       ├── injection_order_pos.txt\n│       ├── mrm_chenhui.xlsx\n│       ├── NEG\n│       │   ├── QC\n│       │   │   ├── QC_01.raw\n│       │   │   ├── QC_02.raw\n│       │   │   ├── QC_07.raw\n│       │   │   └── QC_08.raw\n│       │   └── Subject\n│       │       ├── S_01.raw\n│       │       ├── S_02.raw\n│       │       ├── S_03.raw\n│       │       ├── S_04.raw\n│       │       ├── S_05.raw\n│       │       └── S_06.raw\n│       ├── POS\n│       │   ├── QC\n│       │   │   ├── QC_01.raw\n│       │   │   ├── QC_02.raw\n│       │   │   ├── QC_07.raw\n│       │   │   └── QC_08.raw\n│       │   └── Subject\n│       │       ├── S_01.raw\n│       │       ├── S_02.raw\n│       │       ├── S_03.raw\n│       │       ├── S_04.raw\n│       │       ├── S_05.raw\n│       │       └── S_06.raw\n│       └── sampe_info.txt\n├── 02.progress\n│   ├── Annotation\n│   │   ├── Feature_filtering\n│   │   │   ├── 01.Filtered_FeatureAnnotation.xlsx\n│   │   │   ├── 02.Filtered_FeatureAccumulationMatrix.xlsx\n│   │   │   └── 03.Filtered_Sample_info.xlsx\n│   │   ├── NEG -&gt; ../transform/MS2/NEG/\n│   │   ├── object_neg_anno.rds\n│   │   ├── object_neg.ms2.rds\n│   │   ├── object_neg.rds -&gt; ../Data_cleaning/object_neg.rds\n│   │   ├── object_pos_anno.rds\n│   │   ├── object_pos.ms2.rds\n│   │   ├── object_pos.rds -&gt; ../Data_cleaning/object_pos.rds\n│   │   ├── Original_annotation\n│   │   │   ├── 01.Original_FeatureAnnotation.xlsx\n│   │   │   ├── 02.Original_FeatureAccumulationMatrix.xlsx\n│   │   │   └── 03.Original_Sample_info.xlsx\n│   │   ├── POS -&gt; ../transform/MS2/POS/\n│   │   ├── RemoveRedundancy\n│   │   │   ├── Final_annotation.xlsx\n│   │   │   ├── metadata_deduplicate_cw_method.xlsx\n│   │   │   ├── metadata.xlsx\n│   │   │   ├── NEG_final_rest.xlsx\n│   │   │   ├── Non_redundant_feature.xlsx\n│   │   │   └── POS_final_rest.xlsx\n│   │   └── semi_annotation\n│   │       └── semi_annotation.xlsx\n│   ├── Data_cleaning\n│   │   ├── 01.raw\n│   │   │   ├── NEG\n│   │   │   │   ├── missing_value_distribution.pdf\n│   │   │   │   ├── missing_value_distribution.png\n│   │   │   │   ├── object.neg\n│   │   │   │   ├── peak_distribution_plt.neg.pdf\n│   │   │   │   ├── peak_distribution_plt.neg.png\n│   │   │   │   ├── raw_peak_boxplot.neg.pdf\n│   │   │   │   └── raw_peak_boxplot.neg.png\n│   │   │   └── POS\n│   │   │       ├── missing_value_distribution.pdf\n│   │   │       ├── missing_value_distribution.png\n│   │   │       ├── object.pos\n│   │   │       ├── peak_distribution_plt.pos.pdf\n│   │   │       ├── peak_distribution_plt.pos.png\n│   │   │       ├── raw_peak_boxplot.pos.pdf\n│   │   │       └── raw_peak_boxplot.pos.png\n│   │   ├── 02.remove_noise\n│   │   │   ├── NEG\n│   │   │   │   ├── object.neg.mv\n│   │   │   │   ├── plt_mv_remove_noise.neg.pdf\n│   │   │   │   ├── plt_mv_remove_noise.neg.png\n│   │   │   │   ├── plt_mv_remove_outlier.neg.pdf\n│   │   │   │   └── plt_mv_remove_outlier.neg.png\n│   │   │   └── POS\n│   │   │       ├── object.pos.mv\n│   │   │       ├── plt_mv_remove_noise.pos.pdf\n│   │   │       ├── plt_mv_remove_noise.pos.png\n│   │   │       ├── plt_mv_remove_outlier.pos.pdf\n│   │   │       └── plt_mv_remove_outlier.pos.png\n│   │   ├── 03.impute_mv\n│   │   │   ├── NEG\n│   │   │   │   └── object.neg.impute\n│   │   │   └── POS\n│   │   │       └── object.pos.impute\n│   │   ├── 04.normalization\n│   │   │   ├── NEG\n│   │   │   │   ├── object_inte_neg\n│   │   │   │   ├── plt_pca_BandA_norm.pdf\n│   │   │   │   ├── plt_pca_BandA_norm.png\n│   │   │   │   ├── plt_rsd_BandA.pdf\n│   │   │   │   └── plt_rsd_BandA.png\n│   │   │   └── POS\n│   │   │       ├── object_inte_pos\n│   │   │       ├── plt_pca_BandA_norm.pdf\n│   │   │       ├── plt_pca_BandA_norm.png\n│   │   │       ├── plt_rsd_BandA.pdf\n│   │   │       └── plt_rsd_BandA.png\n│   │   ├── injection_order_neg.txt -&gt; ../../01.data/rawdata/injection_order_neg.txt\n│   │   ├── injection_order_pos.txt -&gt; ../../01.data/rawdata/injection_order_pos.txt\n│   │   ├── object.neg -&gt; ../peak_picking/object.neg\n│   │   ├── object_neg.rds\n│   │   ├── object.pos -&gt; ../peak_picking/object.pos\n│   │   ├── object_pos.rds\n│   │   └── Rplots.pdf\n│   ├── peak_picking\n│   │   ├── NEG\n│   │   │   └── Result\n│   │   │       ├── BPC.pdf\n│   │   │       ├── intermediate_data\n│   │   │       │   ├── bpc.plot\n│   │   │       │   ├── massprocesser_parameters\n│   │   │       │   ├── raw_data\n│   │   │       │   ├── tic.plot\n│   │   │       │   ├── xdata\n│   │   │       │   ├── xdata2\n│   │   │       │   └── xdata3\n│   │   │       ├── object\n│   │   │       ├── Peak_table.csv\n│   │   │       ├── Peak_table_for_cleaning.csv\n│   │   │       ├── RT correction plot.pdf\n│   │   │       └── TIC.pdf\n│   │   ├── object.neg\n│   │   ├── object.pos\n│   │   └── POS\n│   │       └── Result\n│   │           ├── BPC.pdf\n│   │           ├── intermediate_data\n│   │           │   ├── bpc.plot\n│   │           │   ├── massprocesser_parameters\n│   │           │   ├── raw_data\n│   │           │   ├── tic.plot\n│   │           │   ├── xdata\n│   │           │   ├── xdata2\n│   │           │   └── xdata3\n│   │           ├── object\n│   │           ├── Peak_table.csv\n│   │           ├── Peak_table_for_cleaning.csv\n│   │           ├── RT correction plot.pdf\n│   │           └── TIC.pdf\n│   └── transform\n│       ├── MS1\n│       │   ├── NEG\n│       │   │   ├── QC\n│       │   │   │   ├── QC_01.mzXML\n│       │   │   │   ├── QC_02.mzXML\n│       │   │   │   ├── QC_07.mzXML\n│       │   │   │   └── QC_08.mzXML\n│       │   │   └── Subject\n│       │   │       ├── S_01.mzXML\n│       │   │       ├── S_02.mzXML\n│       │   │       ├── S_03.mzXML\n│       │   │       ├── S_04.mzXML\n│       │   │       ├── S_05.mzXML\n│       │   │       └── S_06.mzXML\n│       │   └── POS\n│       │       ├── QC\n│       │       │   ├── QC_01.mzXML\n│       │       │   ├── QC_02.mzXML\n│       │       │   ├── QC_07.mzXML\n│       │       │   └── QC_08.mzXML\n│       │       └── Subject\n│       │           ├── S_01.mzXML\n│       │           ├── S_02.mzXML\n│       │           ├── S_03.mzXML\n│       │           ├── S_04.mzXML\n│       │           ├── S_05.mzXML\n│       │           └── S_06.mzXML\n│       └── MS2\n│           ├── NEG\n│           │   ├── QC\n│           │   │   ├── QC_01.mgf\n│           │   │   ├── QC_02.mgf\n│           │   │   ├── QC_07.mgf\n│           │   │   └── QC_08.mgf\n│           │   └── Subject\n│           │       ├── S_01.mgf\n│           │       ├── S_02.mgf\n│           │       ├── S_03.mgf\n│           │       ├── S_04.mgf\n│           │       ├── S_05.mgf\n│           │       └── S_06.mgf\n│           └── POS\n│               ├── QC\n│               │   ├── QC_01.mgf\n│               │   ├── QC_02.mgf\n│               │   ├── QC_07.mgf\n│               │   └── QC_08.mgf\n│               └── Subject\n│                   ├── S_01.mgf\n│                   ├── S_02.mgf\n│                   ├── S_03.mgf\n│                   ├── S_04.mgf\n│                   ├── S_05.mgf\n│                   └── S_06.mgf\n└── 03.result\n\n52 directories, 154 files\nThe results after peak picking, data cleaning, removing redundancy, and annotation processing are stored at the following path:\n./working_dir/02.progress/Annotation/RemoveRedundancy/\n├── Final_annotation.xlsx\n├── metadata_deduplicate_cw_method.xlsx\n├── metadata.xlsx\n├── NEG_final_rest.xlsx\n├── Non_redundant_feature.xlsx\n└── POS_final_rest.xlsx\n\n0 directories, 6 files\n\n\n./working_dir/02.progress/Annotation/semi_annotation/\n└── semi_annotation.xlsx\n\n0 directories, 1 file\n\n\n\nThe Linux version, compared to the ShinyAPP, features fewer configuration parameters and offers simpler and faster operations, making it suitable for projects with more than 30 samples.\nIf parameter adjustments are needed during the analysis, you can modify the corresponding parameters in the .HPC_tidymass/src/R/ directory.\n.HPC_tidymass/src/R/\n├── 02.PeakPicking.R\n├── 04.DataCleaning.R\n├── 05.Metabolomics_annotation.R\n├── 06.Annotation_filtering.R\n├── 06.Annotation_rm_redundancy.R\n├── 06.Annotation_rm_redundancy_slide_window.R\n├── 07.Annotation_rm_redun_pos_neg.R\n├── 08.Annotation_rm_redun_cw.R\n├── 09.semi_annotation.R\n└── classifiy.R",
+    "crumbs": [
+      "Upstream data processing",
+      "Untargeted method"
     ]
   },
   {
@@ -31,17 +85,6 @@
     ]
   },
   {
-    "objectID": "content/Untargeted_method.html",
-    "href": "content/Untargeted_method.html",
-    "title": "Untargeted metabolomics data process.",
-    "section": "",
-    "text": "Untargeted metabolomics data process.",
-    "crumbs": [
-      "Upstream data processing",
-      "Untargeted method"
-    ]
-  },
-  {
     "objectID": "content/Downstream_method.html",
     "href": "content/Downstream_method.html",
     "title": "Downstream Data Process",
@@ -50,59 +93,6 @@
     "crumbs": [
       "Downstream data processing",
       "Introduction"
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "MetMiner cookbook",
-    "section": "",
-    "text": "Project\nMetMiner: An Integrated Pipeline for Large-Scale Metabolomics Data Processing and Data Mining.\nThis is the documentation of MetMiner. You can get up-to-date verison from the GitHub repository https://github.com/ShawnWx2019/MetMiner.\nIn this workflow, tidyMass @shenTidyMassObjectorientedReproducible2022b and HPC-tidymass takes on the majority of the upstream data analysis, data cleaning, and metabolite annotation tasks.\nFurthermore, we have developed a Metabolomics Downstream Analysis toolkit MDAtoolkits and a user-friendly WGCNA Shiny app. They are responsible for the downstream analysis and data mining section.\n\n\nCitation\nIf you have utilized MetMiner in your project, please cite:\n\nXiao Wang, Shuang Liang, Wenqi Yang, Bing Zhao, Ke Yu, Fei Liang, Luis A. J. Mur, Jeremy A, Roberts, Junli Zhang,and Xuebin Zhang. 2024 “MetMiner: An integrated pipeline for large-scale screening of regulators in plant metabolism.”\nShen, Xiaotao, Hong Yan, Chuchu Wang, Peng Gao, Caroline H. Johnson, and Michael P. Snyder. 2022. “TidyMass an Object-Oriented Reproducible Analysis Framework for LC Data.” Nature Communications 13 (1): 4365. https://doi.org/10.1038/s41467-022-32155-w.",
-    "crumbs": [
-      "About"
-    ]
-  },
-  {
-    "objectID": "content/references.html",
-    "href": "content/references.html",
-    "title": "References",
-    "section": "",
-    "text": "References",
-    "crumbs": [
-      "References"
-    ]
-  },
-  {
-    "objectID": "content/feature_dedup.html",
-    "href": "content/feature_dedup.html",
-    "title": "Feature deduplication",
-    "section": "",
-    "text": "Feature deduplication",
-    "crumbs": [
-      "Downstream data processing",
-      "Feature deduplication"
-    ]
-  },
-  {
-    "objectID": "content/iWGCNA.html",
-    "href": "content/iWGCNA.html",
-    "title": "Data mining by iWGCNA",
-    "section": "",
-    "text": "Data mining by iWGCNA",
-    "crumbs": [
-      "Data mining",
-      "iterative WGCNA"
-    ]
-  },
-  {
-    "objectID": "content/feature_anno.html",
-    "href": "content/feature_anno.html",
-    "title": "Feature Annotation",
-    "section": "",
-    "text": "Feature Annotation",
-    "crumbs": [
-      "Downstream data processing",
-      "Feature annotation"
     ]
   },
   {
@@ -124,14 +114,46 @@
     "text": "Summary\nIn summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
   },
   {
-    "objectID": "content/pre_targeted.html",
-    "href": "content/pre_targeted.html",
-    "title": "Pseudotargeted metabolomics",
+    "objectID": "content/dam.html",
+    "href": "content/dam.html",
+    "title": "Different Accumulated Metabolite Analysis",
     "section": "",
-    "text": "Pseudotargeted metabolomics",
+    "text": "Different Accumulated Metabolite Analysis",
     "crumbs": [
-      "Upstream data processing",
-      "Pseudotargeted  method"
+      "Downstream data processing",
+      "DAM analysis"
+    ]
+  },
+  {
+    "objectID": "content/feature_anno.html",
+    "href": "content/feature_anno.html",
+    "title": "Feature Annotation",
+    "section": "",
+    "text": "Feature Annotation",
+    "crumbs": [
+      "Downstream data processing",
+      "Feature annotation"
+    ]
+  },
+  {
+    "objectID": "content/iWGCNA.html",
+    "href": "content/iWGCNA.html",
+    "title": "Data mining by iWGCNA",
+    "section": "",
+    "text": "Data mining by iWGCNA",
+    "crumbs": [
+      "Data mining",
+      "iterative WGCNA"
+    ]
+  },
+  {
+    "objectID": "content/references.html",
+    "href": "content/references.html",
+    "title": "References",
+    "section": "",
+    "text": "References",
+    "crumbs": [
+      "References"
     ]
   }
 ]
