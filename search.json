@@ -10,26 +10,11 @@
     ]
   },
   {
-    "objectID": "content/pre_targeted.html",
-    "href": "content/pre_targeted.html",
-    "title": "Pseudotargeted metabolomics",
+    "objectID": "content/summary.html",
+    "href": "content/summary.html",
+    "title": "Summary",
     "section": "",
-    "text": "Pseudotargeted metabolomics",
-    "crumbs": [
-      "Upstream data processing",
-      "Pseudotargeted  method"
-    ]
-  },
-  {
-    "objectID": "content/feature_dedup.html",
-    "href": "content/feature_dedup.html",
-    "title": "Feature deduplication",
-    "section": "",
-    "text": "Feature deduplication",
-    "crumbs": [
-      "Downstream data processing",
-      "Feature deduplication"
-    ]
+    "text": "Summary\nIn summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
   },
   {
     "objectID": "content/Untargeted_method.html",
@@ -65,6 +50,50 @@
     ]
   },
   {
+    "objectID": "content/feature_anno.html",
+    "href": "content/feature_anno.html",
+    "title": "Feature Annotation",
+    "section": "",
+    "text": "Feature Annotation",
+    "crumbs": [
+      "Downstream data processing",
+      "Feature annotation"
+    ]
+  },
+  {
+    "objectID": "content/dam.html",
+    "href": "content/dam.html",
+    "title": "Different Accumulated Metabolite Analysis",
+    "section": "",
+    "text": "Different Accumulated Metabolite Analysis",
+    "crumbs": [
+      "Downstream data processing",
+      "DAM analysis"
+    ]
+  },
+  {
+    "objectID": "content/pre_targeted.html",
+    "href": "content/pre_targeted.html",
+    "title": "Pseudotargeted metabolomics",
+    "section": "",
+    "text": "Pseudotargeted metabolomics",
+    "crumbs": [
+      "Upstream data processing",
+      "Pseudotargeted  method"
+    ]
+  },
+  {
+    "objectID": "content/Upstream_method.html",
+    "href": "content/Upstream_method.html",
+    "title": "Upsteam Data Process",
+    "section": "",
+    "text": "Upsteam Data Process",
+    "crumbs": [
+      "Upstream data processing",
+      "Introduction"
+    ]
+  },
+  {
     "objectID": "content/installation.html",
     "href": "content/installation.html",
     "title": "Installation",
@@ -85,57 +114,6 @@
     ]
   },
   {
-    "objectID": "content/Downstream_method.html",
-    "href": "content/Downstream_method.html",
-    "title": "Downstream Data Process",
-    "section": "",
-    "text": "Downstream Data Process",
-    "crumbs": [
-      "Downstream data processing",
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "content/Upstream_method.html",
-    "href": "content/Upstream_method.html",
-    "title": "Upsteam Data Process",
-    "section": "",
-    "text": "Upsteam Data Process",
-    "crumbs": [
-      "Upstream data processing",
-      "Introduction"
-    ]
-  },
-  {
-    "objectID": "content/summary.html",
-    "href": "content/summary.html",
-    "title": "Summary",
-    "section": "",
-    "text": "Summary\nIn summary, this book has no content whatsoever.\n\n1 + 1\n\n[1] 2"
-  },
-  {
-    "objectID": "content/dam.html",
-    "href": "content/dam.html",
-    "title": "Different Accumulated Metabolite Analysis",
-    "section": "",
-    "text": "Different Accumulated Metabolite Analysis",
-    "crumbs": [
-      "Downstream data processing",
-      "DAM analysis"
-    ]
-  },
-  {
-    "objectID": "content/feature_anno.html",
-    "href": "content/feature_anno.html",
-    "title": "Feature Annotation",
-    "section": "",
-    "text": "Feature Annotation",
-    "crumbs": [
-      "Downstream data processing",
-      "Feature annotation"
-    ]
-  },
-  {
     "objectID": "content/iWGCNA.html",
     "href": "content/iWGCNA.html",
     "title": "Data mining by iWGCNA",
@@ -144,6 +122,28 @@
     "crumbs": [
       "Data mining",
       "iterative WGCNA"
+    ]
+  },
+  {
+    "objectID": "content/feature_dedup.html",
+    "href": "content/feature_dedup.html",
+    "title": "Feature deduplication",
+    "section": "",
+    "text": "Feature deduplication\nFirst, select hydrophilic interaction chromatography (HILIC) or reverse phase chromatography (RP), then choose the ion mode, and finally select the filtering method for annotation. For multiple annotations: you can choose to retain all, retain those with high scores, or retain the first annotation. For removing redundant annotations: you can choose to retain all or retain the first annotation. You can also filter annotations based on accuracy: you can choose to retain all or those with higher accuracy (1,2). After the parameters are set, click the Start annotation filtering button to filter annotations.",
+    "crumbs": [
+      "Downstream data processing",
+      "Feature deduplication"
+    ]
+  },
+  {
+    "objectID": "content/Downstream_method.html",
+    "href": "content/Downstream_method.html",
+    "title": "Downstream Data Process",
+    "section": "",
+    "text": "Downstream Data Process",
+    "crumbs": [
+      "Downstream data processing",
+      "Introduction"
     ]
   },
   {
