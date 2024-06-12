@@ -159,7 +159,7 @@
     "href": "content/dam.html",
     "title": "Different Accumulated Metabolite Analysis",
     "section": "",
-    "text": "Different Accumulated Metabolite Analysis",
+    "text": "Different Accumulated Metabolite Analysis\nFirst, we set up the comparison groups and sample IDs. Finally, we adjust the Parameters for DAM, such as Logarithmic transformation, p-value, q-value, VIP, log2fc, Univariate test method, Paired, Multivariate test method, p adjust method, and so on. Click the Check your compare group button to proceed with the Different Accumulated Metabolite Analysis. If you need to start the analysis from the ‘Resuming analysis from the unfinished steps (options)’, click Wake up first to activate the mass_dataset. Switch tabs to view the results of the differential analysis, such as the Upset plot, PCA, PLS-DA, OPLS-DA, Volcano plot and boxplot. Open the interactive plot button and click on the metabolites in the Volcano plot to view detailed information such as Compound annotation, MS2 spectra, and Structure.",
     "crumbs": [
       "Downstream data processing",
       "DAM analysis"
