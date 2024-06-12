@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -246,7 +280,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#upsteam-data-process" id="toc-upsteam-data-process" class="nav-link active" data-scroll-target="#upsteam-data-process">Upsteam Data Process</a></li>
+  <li><a href="#upsteam-data-process" id="toc-upsteam-data-process" class="nav-link active" data-scroll-target="#upsteam-data-process">Upsteam Data Process</a>
+  <ul class="collapse">
+  <li><a href="#introduce" id="toc-introduce" class="nav-link" data-scroll-target="#introduce">Introduce</a></li>
+  <li><a href="#usage-of-shinyapp" id="toc-usage-of-shinyapp" class="nav-link" data-scroll-target="#usage-of-shinyapp">Usage of ShinyAPP</a>
+  <ul class="collapse">
+  <li><a href="#upstream-analysis" id="toc-upstream-analysis" class="nav-link" data-scroll-target="#upstream-analysis">Upstream analysis</a></li>
+  </ul></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/edit/main/content/Upstream_method.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/blob/main/content/Upstream_method.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -258,8 +299,33 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="upsteam-data-process" class="level1 unnumbered">
 <h1 class="unnumbered">Upsteam Data Process</h1>
+<section id="introduce" class="level2">
+<h2 class="anchored" data-anchor-id="introduce">Introduce</h2>
+<p>This Shiny application is developed based on the tidyMass package, specifically designed for the analysis of non-targeted/targeted metabolomics data. Dr.&nbsp;Xiaotao Shen’s tidyMass is an excellent open-source software tailored for metabolomics data processing. It adheres to the tidyverse development philosophy, significantly enhancing code readability. Additionally, the newly added <strong><code>mass_dataset</code></strong> object makes the metabolomics data analysis process more transparent and reproducible.</p>
+</section>
+<section id="usage-of-shinyapp" class="level2">
+<h2 class="anchored" data-anchor-id="usage-of-shinyapp">Usage of ShinyAPP</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MetMiner)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymass)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(MDAtoolkits)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">run_metMiner</span>(<span class="at">maxRequestSize =</span> <span class="dv">300</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><img src="https://img.shields.io/badge/Win-%3E7-greenyellow.png" class="img-fluid" alt="Win version"> <img src="https://img.shields.io/badge/MacOS-%3E%2010.10-salmon" class="img-fluid" alt="MacOS version"></p>
+<p><a href="https://pic.imgdb.cn/item/66683622d9c307b7e9ff21d1.png"><img src="https://pic.imgdb.cn/item/66683622d9c307b7e9ff21d1.png" class="img-fluid"></a></p>
+<section id="upstream-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="upstream-analysis">Upstream analysis</h3>
+<p>Before starting the project, we need to set up the working directory and upload sample information. You have the following three ways to upload files. <br></p>
+<p><strong><code>Start with Ms file</code></strong>: If your data is in raw format, you need to first convert it to .mgf format using HPC_tidymass. Then click on ‘Start with Ms file’ to upload the file. Then upload the folder containing MS2. <br></p>
+<p><a href="https://pic.imgdb.cn/item/66683929d9c307b7e903dbc9.png"><img src="https://pic.imgdb.cn/item/66683929d9c307b7e903dbc9.png" class="img-fluid"></a></p>
+<p><strong><code>Start with table file</code></strong>: If your data is a post-peak metabolite expression matrix, you can click on the ‘Start with table file’ button to upload the data. The sample table is as follows, and the first four columns must exist, with column names not to be changed. Then upload the folder containing MS2. <br> <a href="https://pic.imgdb.cn/item/666839b8d9c307b7e9047005.png"><img src="https://pic.imgdb.cn/item/666839b8d9c307b7e9047005.png" class="img-fluid"></a></p>
+<p><strong><code>Start with massdataset object</code></strong>: If your data is generated by tidymass, you can choose the ‘Start with massdataset object’ button to upload your data. Then upload the folder containing MS2.</p>
+<p><a href="https://pic.imgdb.cn/item/66683b5cd9c307b7e9069976.png"><img src="https://pic.imgdb.cn/item/66683b5cd9c307b7e9069976.png" class="img-fluid"></a></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
