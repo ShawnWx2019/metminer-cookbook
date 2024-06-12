@@ -246,7 +246,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#feature-deduplication" id="toc-feature-deduplication" class="nav-link active" data-scroll-target="#feature-deduplication">Feature deduplication</a></li>
+  <li><a href="#feature-deduplication" id="toc-feature-deduplication" class="nav-link active" data-scroll-target="#feature-deduplication">Feature deduplication</a>
+  <ul class="collapse">
+  <li><a href="#data-integration" id="toc-data-integration" class="nav-link" data-scroll-target="#data-integration">Data integration</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/edit/main/content/feature_dedup.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/blob/main/content/feature_dedup.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -259,9 +262,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="feature-deduplication" class="level1">
 <h1>Feature deduplication</h1>
 <p>First, select hydrophilic interaction chromatography (HILIC) or reverse phase chromatography (RP), then choose the ion mode, and finally select the filtering method for annotation. For multiple annotations: you can choose to retain all, retain those with high scores, or retain the first annotation. For removing redundant annotations: you can choose to retain all or retain the first annotation. You can also filter annotations based on accuracy: you can choose to retain all or those with higher accuracy (1,2). After the parameters are set, click the <strong><code>Start annotation filtering</code></strong> button to filter annotations.</p>
-<p><a href="https://pic.imgdb.cn/item/663893550ea9cb14035fcdb3.png"><img src="https://pic.imgdb.cn/item/663893550ea9cb14035fcdb3.png" class="img-fluid"></a></p>
+<p><a href="https://pic.imgdb.cn/item/66685fddd9c307b7e9351805.png"><img src="https://pic.imgdb.cn/item/66685fddd9c307b7e9351805.png" class="img-fluid"></a></p>
+<section id="data-integration" class="level3">
+<h3 class="anchored" data-anchor-id="data-integration">Data integration</h3>
+<p>Set the method for integrating the data, then click the <strong><code>Start integration</code></strong> button to proceed with data integration. The result will generate an accumulation matrix, sample information, variable information, and integrated results of compound annotation, which you can download.</p>
+<p><a href="https://pic.imgdb.cn/item/6668615ed9c307b7e936da64.png"><img src="https://pic.imgdb.cn/item/6668615ed9c307b7e936da64.png" class="img-fluid"></a></p>
+<p>Switch to the <strong><code>Figures</code></strong> tab, click the <strong><code>Start visualization</code></strong> button, adjust PCA grouping colors, and proceed with plotting. You can also set the image size, then click <strong><code>Download</code></strong> to download the image. Open the <strong><code>Interactive plot</code></strong> button, where you can view the 3D PCA plot, hover the mouse to see detailed sample information. Scroll down the page, at the bottom, you can see the sample correlation plot. You can adjust its colors, grouping, clustering, and more.</p>
+<p><a href="https://pic.imgdb.cn/item/666864ffd9c307b7e93bbe60.png"><img src="https://pic.imgdb.cn/item/666864ffd9c307b7e93bbe60.png" class="img-fluid"></a></p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

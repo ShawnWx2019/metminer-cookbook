@@ -46,7 +46,7 @@
     "href": "content/feature_dedup.html",
     "title": "Feature deduplication",
     "section": "",
-    "text": "Feature deduplication\nFirst, select hydrophilic interaction chromatography (HILIC) or reverse phase chromatography (RP), then choose the ion mode, and finally select the filtering method for annotation. For multiple annotations: you can choose to retain all, retain those with high scores, or retain the first annotation. For removing redundant annotations: you can choose to retain all or retain the first annotation. You can also filter annotations based on accuracy: you can choose to retain all or those with higher accuracy (1,2). After the parameters are set, click the Start annotation filtering button to filter annotations.",
+    "text": "Feature deduplication\nFirst, select hydrophilic interaction chromatography (HILIC) or reverse phase chromatography (RP), then choose the ion mode, and finally select the filtering method for annotation. For multiple annotations: you can choose to retain all, retain those with high scores, or retain the first annotation. For removing redundant annotations: you can choose to retain all or retain the first annotation. You can also filter annotations based on accuracy: you can choose to retain all or those with higher accuracy (1,2). After the parameters are set, click the Start annotation filtering button to filter annotations.\n\n\nData integration\nSet the method for integrating the data, then click the Start integration button to proceed with data integration. The result will generate an accumulation matrix, sample information, variable information, and integrated results of compound annotation, which you can download.\n\nSwitch to the Figures tab, click the Start visualization button, adjust PCA grouping colors, and proceed with plotting. You can also set the image size, then click Download to download the image. Open the Interactive plot button, where you can view the 3D PCA plot, hover the mouse to see detailed sample information. Scroll down the page, at the bottom, you can see the sample correlation plot. You can adjust its colors, grouping, clustering, and more.",
     "crumbs": [
       "Downstream data processing",
       "Feature deduplication"
@@ -146,9 +146,9 @@
   {
     "objectID": "content/Import_data.html",
     "href": "content/Import_data.html",
-    "title": "Downstream Data Process",
+    "title": "Data import",
     "section": "",
-    "text": "Downstream Data Process",
+    "text": "Data import\n\nUpload MS file\nClick the dropdown button Import file and upload MS1, MS/MS files, as shown in the structure below. Click the 1. Check input file button to check the data. After confirming correctness, click the 2. Peak picking button for peak picking. This is a relatively lengthy process, and the progress bar will be displayed in the bottom right corner.\n\n\n\nData cleaning\nData cleaning includes: Overview, Remove noisy features, Remove outliers, Missing value imputation, and Normalization.\n\n\nOverview\nFirst, upload sample information and set parameters, then Update sample information, click Start, and finally open the Interactive plot button to check for missing sample data.\n\nOpen the interactive button, then hover the mouse over the image to see detailed information about the samples in the detailed image.\n\n\n\nRemove noisy features\nFirst, adjust the parameters for grouping, samples, and QC missing frequency on the left side, click Find noisy features to identify noisy features, and then click Remove and update to update the data.\n\n\n\nRemove outliers\nFirst, adjust the parameters on the left side, click Find outliers to identify outliers, open the Interactive plot, hover the mouse over the outlier sample to view outlier sample information, remove outlier values. Then switch to negative spectrum and repeat the operation, then click Remove and update to update the data.\n\n\n\nMissing value imputation\nSelect the method for missing value imputation, such as: knn, rf, mean, median, zero, mininum, bpca, svdlmpute, ppca, etc., click Start to proceed with imputation.\n\n\n\nData standardization\nFirst, adjust the method for filling missing values on the left side, such as svr, total, mean,median, pqn, loess ppca, etc., click Start normalization to standardize the data. Select PCA color grouping. Then click Visualize to visualize the data before and after normalization. Open the Interactive plot button, and you can see the 3D PCA plot. Hovering the mouse over it allows you to see detailed information about the samples. Finally, click the Export normalized data button to download the normalized data.",
     "crumbs": [
       "Upstream data processing",
       "Data import"
@@ -170,7 +170,7 @@
     "href": "content/feature_anno.html",
     "title": "Feature Annotation",
     "section": "",
-    "text": "Feature Annotation",
+    "text": "Feature Annotation\nWe have built-in some publicly available MS1 and MS/MS databases (MoNA, Massbank, ReSpect, PlaSMA, MetabOBASE, KEGG, KNApSAcK, Ath_Cyc, Orbitrap, Zma_Cyc), which can be selected in the parameters column on the left side. You can also use Tidymass to build your own database, which needs to be in .rda format. After setting the parameters, click Start annotation.",
     "crumbs": [
       "Downstream data processing",
       "Feature annotation"
@@ -192,6 +192,17 @@
     "crumbs": [
       "Upstream data processing",
       "Project initiate"
+    ]
+  },
+  {
+    "objectID": "content/feature_class.html",
+    "href": "content/feature_class.html",
+    "title": "Classification",
+    "section": "",
+    "text": "Classification\nFirst, you need to prepare a table like this, set the parameters, then upload the file, and click the Start button. Click the show pie plot button, switch to the plot tab, and you can see the classification results.\n\n\n\nvariable_id\nCompound.name\nLab.ID\n\n\n\n\nM105T63_NEG\nGlyceric acid\nMONA_15722\n\n\nM111T107_NEG\n2-Furancarboxylic acid\nNO07297\n\n\nM113T918_NEG\nAcetylenedicarboxylate\nC03248\n\n\nM115T64_NEG\nMaleic acid\nMONA_15797\n\n\nM115T96_NEG\n3-Methyl-2-oxobutanoic acid\nC00141\n\n\nM117T75_NEG\nSuccinic acid\nNO07371",
+    "crumbs": [
+      "Downstream data processing",
+      "Classification"
     ]
   }
 ]

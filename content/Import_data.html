@@ -246,7 +246,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#downstream-data-process" id="toc-downstream-data-process" class="nav-link active" data-scroll-target="#downstream-data-process">Downstream Data Process</a></li>
+  <li><a href="#data-import" id="toc-data-import" class="nav-link active" data-scroll-target="#data-import">Data import</a>
+  <ul class="collapse">
+  <li><a href="#upload-ms-file" id="toc-upload-ms-file" class="nav-link" data-scroll-target="#upload-ms-file">Upload MS file</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning">Data cleaning</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/edit/main/content/Import_data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/blob/main/content/Import_data.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -256,10 +260,48 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<section id="downstream-data-process" class="level1 unnumbered">
-<h1 class="unnumbered">Downstream Data Process</h1>
+<section id="data-import" class="level1 unnumbered">
+<h1 class="unnumbered">Data import</h1>
+<section id="upload-ms-file" class="level3">
+<h3 class="anchored" data-anchor-id="upload-ms-file">Upload MS file</h3>
+<p>Click the dropdown button <strong><code>Import file</code></strong> and upload MS1, MS/MS files, as shown in the structure below. Click the <strong><code>1. Check input file</code></strong> button to check the data. After confirming correctness, click the <strong><code>2. Peak picking</code></strong> button for peak picking. This is a relatively lengthy process, and the progress bar will be displayed in the bottom right corner.</p>
+<p><a href="https://pic.imgdb.cn/item/666847eed9c307b7e9156494.png"><img src="https://pic.imgdb.cn/item/666847eed9c307b7e9156494.png" class="img-fluid"></a></p>
+</section>
+<section id="data-cleaning" class="level3">
+<h3 class="anchored" data-anchor-id="data-cleaning">Data cleaning</h3>
+<p>Data cleaning includes: <strong><code>Overview</code></strong>, <strong><code>Remove noisy features</code></strong>, <strong><code>Remove outliers</code></strong>, <strong><code>Missing value imputation</code></strong>, and <strong><code>Normalization</code></strong>.</p>
+<p><a href="https://pic.imgdb.cn/item/66684f96d9c307b7e91f3551.png"><img src="https://pic.imgdb.cn/item/66684f96d9c307b7e91f3551.png" class="img-fluid"></a></p>
+<section id="overview" class="level4">
+<h4 class="anchored" data-anchor-id="overview">Overview</h4>
+<p>First, upload sample information and set parameters, then <strong><code>Update sample information</code></strong>, click <strong><code>Start</code></strong>, and finally open the <strong><code>Interactive plot</code></strong> button to check for missing sample data.</p>
+<p><a href="https://pic.imgdb.cn/item/66685147d9c307b7e921463d.png"><img src="https://pic.imgdb.cn/item/66685147d9c307b7e921463d.png" class="img-fluid"></a></p>
+<p>Open the interactive button, then hover the mouse over the image to see detailed information about the samples in the detailed image.</p>
+<p><a href="https://pic.imgdb.cn/item/66685281d9c307b7e922c693.png"><img src="https://pic.imgdb.cn/item/66685281d9c307b7e922c693.png" class="img-fluid"></a></p>
+</section>
+<section id="remove-noisy-features" class="level4">
+<h4 class="anchored" data-anchor-id="remove-noisy-features">Remove noisy features</h4>
+<p>First, adjust the parameters for grouping, samples, and QC missing frequency on the left side, click <strong><code>Find noisy features</code></strong> to identify noisy features, and then click <strong><code>Remove and update</code></strong> to update the data.</p>
+<p><a href="https://pic.imgdb.cn/item/66684d74d9c307b7e91ca541.png"><img src="https://pic.imgdb.cn/item/66684d74d9c307b7e91ca541.png" class="img-fluid"></a></p>
+</section>
+<section id="remove-outliers" class="level4">
+<h4 class="anchored" data-anchor-id="remove-outliers">Remove outliers</h4>
+<p>First, adjust the parameters on the left side, click <strong><code>Find outliers</code></strong> to identify outliers, open the <strong><code>Interactive plot</code></strong>, hover the mouse over the outlier sample to view outlier sample information, remove outlier values. Then switch to negative spectrum and repeat the operation, then click <strong><code>Remove and update</code></strong> to update the data.</p>
+<p><a href="https://pic.imgdb.cn/item/6668565ed9c307b7e927bfe8.png"><img src="https://pic.imgdb.cn/item/6668565ed9c307b7e927bfe8.png" class="img-fluid"></a></p>
+</section>
+<section id="missing-value-imputation" class="level4">
+<h4 class="anchored" data-anchor-id="missing-value-imputation">Missing value imputation</h4>
+<p>Select the method for missing value imputation, such as: knn, rf, mean, median, zero, mininum, bpca, svdlmpute, ppca, etc., click <strong><code>Start</code></strong> to proceed with imputation.</p>
+<p><a href="https://pic.imgdb.cn/item/66685886d9c307b7e92b4767.png"><img src="https://pic.imgdb.cn/item/66685886d9c307b7e92b4767.png" class="img-fluid"></a></p>
+</section>
+<section id="data-standardization" class="level4">
+<h4 class="anchored" data-anchor-id="data-standardization">Data standardization</h4>
+<p>First, adjust the method for filling missing values on the left side, such as svr, total, mean,median, pqn, loess ppca, etc., click <strong><code>Start normalization</code></strong> to standardize the data. Select PCA color grouping. Then click <strong><code>Visualize</code></strong> to visualize the data before and after normalization. Open the <strong><code>Interactive plot</code></strong> button, and you can see the 3D PCA plot. Hovering the mouse over it allows you to see detailed information about the samples. Finally, click the <strong><code>Export normalized data</code></strong> button to download the normalized data.</p>
+<p><a href="https://pic.imgdb.cn/item/66685bb6d9c307b7e92f72cf.png"><img src="https://pic.imgdb.cn/item/66685bb6d9c307b7e92f72cf.png" class="img-fluid"></a></p>
+<p><a href="https://pic.imgdb.cn/item/663aeda60ea9cb1403dff9d3.png"><img src="https://pic.imgdb.cn/item/663aeda60ea9cb1403dff9d3.png" class="img-fluid"></a></p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
