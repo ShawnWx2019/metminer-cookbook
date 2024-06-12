@@ -235,6 +235,20 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#data-mining-by-iwgcna" id="toc-data-mining-by-iwgcna" class="nav-link active" data-scroll-target="#data-mining-by-iwgcna">Data mining by iWGCNA</a></li>
+  <li><a href="#input-data-prepare" id="toc-input-data-prepare" class="nav-link" data-scroll-target="#input-data-prepare">Input data prepare</a>
+  <ul class="collapse">
+  <li><a href="#expression-matrix" id="toc-expression-matrix" class="nav-link" data-scroll-target="#expression-matrix">Expression matrix</a></li>
+  <li><a href="#trait-table." id="toc-trait-table." class="nav-link" data-scroll-target="#trait-table.">Trait table.</a></li>
+  </ul></li>
+  <li><a href="#step-by-step-analysis" id="toc-step-by-step-analysis" class="nav-link" data-scroll-target="#step-by-step-analysis">Step by step analysis</a>
+  <ul class="collapse">
+  <li><a href="#step1.-expression-matrix-filtering" id="toc-step1.-expression-matrix-filtering" class="nav-link" data-scroll-target="#step1.-expression-matrix-filtering">Step1. Expression matrix filtering</a></li>
+  <li><a href="#step2.-selection-and-validation-of-the-soft-threshold" id="toc-step2.-selection-and-validation-of-the-soft-threshold" class="nav-link" data-scroll-target="#step2.-selection-and-validation-of-the-soft-threshold">Step2. selection and validation of the soft-threshold</a></li>
+  <li><a href="#step3.-one-step-network-construction-and-module-detection." id="toc-step3.-one-step-network-construction-and-module-detection." class="nav-link" data-scroll-target="#step3.-one-step-network-construction-and-module-detection.">Step3. One step network construction and module detection.</a></li>
+  <li><a href="#step4.-module-trait-relationship." id="toc-step4.-module-trait-relationship." class="nav-link" data-scroll-target="#step4.-module-trait-relationship.">Step4. Module-trait relationship.</a></li>
+  <li><a href="#step5.-interested-module-and-hubgene." id="toc-step5.-interested-module-and-hubgene." class="nav-link" data-scroll-target="#step5.-interested-module-and-hubgene.">Step5. Interested module and hubgene.</a></li>
+  </ul></li>
+  <li><a href="#update" id="toc-update" class="nav-link" data-scroll-target="#update">Update</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/edit/main/content/iWGCNA.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/blob/main/content/iWGCNA.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li><li><a href="https://github.com/ShawnWx2019/metminer-cookbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -246,6 +260,315 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="data-mining-by-iwgcna" class="level1">
 <h1>Data mining by iWGCNA</h1>
+</section>
+<section id="input-data-prepare" class="level1">
+<h1>Input data prepare</h1>
+<hr>
+<section id="expression-matrix" class="level2">
+<h2 class="anchored" data-anchor-id="expression-matrix">Expression matrix</h2>
+<p>You can prepare your datExpr file following the <a href="Demo/WGCNA_fpkm_data.txt">Expression matrix flie</a></p>
+<p><strong>Data source:</strong></p>
+<ul>
+<li><p>transcriptomics</p>
+<ul>
+<li><p>readcount.</p></li>
+<li><p>expected count</p></li>
+<li><p>normalized readcount (FPKM, RPKM, TPM, CPM)</p></li>
+<li><p>microarray data</p></li>
+</ul></li>
+<li><p>metabolomics</p>
+<ul>
+<li>peak area.</li>
+</ul></li>
+<li><p>proteomics,</p>
+<ul>
+<li><p>protein abundance.</p></li>
+<li><p>corrected intensity</p></li>
+</ul></li>
+<li><p>…</p></li>
+</ul>
+<p><strong>Format:</strong></p>
+<ul>
+<li><p>Gene/metabolite/protein ID in row and sample ID in column.</p></li>
+<li><p>The sample ID should not contain spaces (), special symbols (<code>- @ * &amp; #</code>) etc., and should not start with numbers.</p></li>
+<li><p>DO NOT use pure numbers as gene/metabolite/protein ID.</p></li>
+<li><p>Only accepted tab-delimited file, such as <code>.txt</code> or <code>.tsv</code>, DO NOT use <code>.csv</code>, <code>.xlsx</code>, <code>.xls</code>.</p></li>
+</ul>
+</section>
+<section id="trait-table." class="level2">
+<h2 class="anchored" data-anchor-id="trait-table.">Trait table.</h2>
+<p>You can prepare your trait file following the <a href="Demo/WGCNA_data_trait.txt">trait data file</a> The data can be quantitative traits or qualitative traits.</p>
+<p><strong>For qualitative:</strong></p>
+<p><em>format1.</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>sample_id</th>
+<th>type</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S_0001</td>
+<td>treat</td>
+</tr>
+<tr class="even">
+<td>S_0002</td>
+<td>treat</td>
+</tr>
+<tr class="odd">
+<td>S_0003</td>
+<td>treat</td>
+</tr>
+<tr class="even">
+<td>S_0004</td>
+<td>control</td>
+</tr>
+<tr class="odd">
+<td>S_0005</td>
+<td>control</td>
+</tr>
+<tr class="even">
+<td>S_0006</td>
+<td>control</td>
+</tr>
+</tbody>
+</table>
+<p>if the input trait data have only 2 columns, the format1 will be automaticly transformed to format2.</p>
+<p><em>format2.</em></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>sample_id</th>
+<th>treat</th>
+<th>control</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S_0001</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>S_0002</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>S_0003</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr class="even">
+<td>S_0004</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>S_0005</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>S_0006</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>For quantitative:</strong></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>sample_id</th>
+<th>plant_height</th>
+<th>yield</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>S_0001</td>
+<td>12</td>
+<td>1920</td>
+</tr>
+<tr class="even">
+<td>S_0002</td>
+<td>14</td>
+<td>1930</td>
+</tr>
+<tr class="odd">
+<td>S_0003</td>
+<td>13</td>
+<td>1919</td>
+</tr>
+<tr class="even">
+<td>S_0004</td>
+<td>20</td>
+<td>3020</td>
+</tr>
+<tr class="odd">
+<td>S_0005</td>
+<td>25</td>
+<td>3021</td>
+</tr>
+<tr class="even">
+<td>S_0006</td>
+<td>22</td>
+<td>3320</td>
+</tr>
+</tbody>
+</table>
+</section>
+</section>
+<section id="step-by-step-analysis" class="level1">
+<h1>Step by step analysis</h1>
+<hr>
+<section id="step1.-expression-matrix-filtering" class="level2">
+<h2 class="anchored" data-anchor-id="step1.-expression-matrix-filtering">Step1. Expression matrix filtering</h2>
+<p>According to the <a href="https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/faq.html">WGCNA FAQ</a>, the expression data we input needs to undergo data cleaning before it can be used for WGCNA analysis. We have processed the data as follows:</p>
+<ol type="1">
+<li>For read count values in RNAseq data, we need to normalize them using the <code>vst</code> function from <code>DESeq2</code>. For already normalized count values, such as FPKM, RPKM, TPM values, etc., we can use the original values, or transform them using log10(x+1).</li>
+</ol>
+<blockquote class="blockquote">
+<p>“We then recommend a variance-stabilizing transformation. For example, package DESeq2 implements the function varianceStabilizingTransformation which we have found useful, but one could also start with normalized counts (or RPKM/FPKM data) and log-transform them using log2(x+1). For highly expressed features, the differences between full variance stabilization and a simple log transformation are small.”</p>
+</blockquote>
+<ol start="2" type="1">
+<li>For noise removal, a specific explanation can be referred to:</li>
+</ol>
+<blockquote class="blockquote">
+<p>“We suggest removing features whose counts are consistently low (for example, removing all features that have a count of less than say 10 in more than 90% of the samples) because such low-expressed features tend to reflect noise and correlations based on counts that are mostly zero aren’t really meaningful. The actual thresholds should be based on experimental design, sequencing depth and sample counts.”</p>
+</blockquote>
+<ol start="3" type="1">
+<li>Filter the top N genes with the greatest variation through median absolute deviation (MAD) or based on variance (VAR) for subsequent analysis.</li>
+</ol>
+<blockquote class="blockquote">
+<p>“Probesets or genes may be filtered by mean expression or variance (or their robust analogs such as median and median absolute deviation, MAD) since low-expressed or non-varying genes usually represent noise. Whether it is better to filter by mean expression or variance is a matter of debate; both have advantages and disadvantages, but more importantly, they tend to filter out similar sets of genes since mean and variance are usually related.”</p>
+</blockquote>
+<p><strong>Parameters:</strong></p>
+<p><code>Format</code>:</p>
+<ul>
+<li><code>count</code>, integer, read count from RNAseq data<br>
+</li>
+<li><code>expected count</code>, float, expected count generated by <code>RSEM</code>,<br>
+</li>
+<li><code>normalized count</code>, float, normalized expression levels, such as FPKM, RPKM, or TPM<br>
+</li>
+<li><code>peak area</code>, float, peak area of metabolites produced by LC-MS. Typically, we perform data cleaning and normalization on the peak area in the analysis results.<br>
+</li>
+<li><code>protein abundance</code>, the results from software like PD might be protein abundance, while MaxQuant might provide corrected intensity. Both can be used. However, when the input is corrected intensity, the values are less than 1. In this case, be mindful of the threshold selection in subsequent filtering.</li>
+</ul>
+<p><code>Normalized method</code></p>
+<ul>
+<li><p><code>raw</code> use the raw value.</p></li>
+<li><p><code>logarithm</code> use log10(x+1)</p></li>
+<li><p><code>Sample percentage</code> 0-1, In <strong>what</strong> percentage of samples does the expression level fall below the cutoff</p></li>
+<li><p><code>Expression Cutoff</code> numeric, In what percentage of samples does the expression level fall below <strong>the cutoff</strong></p></li>
+</ul>
+<p><code>Filter Method</code></p>
+<ul>
+<li><p><code>MAD</code> median absolute deviation</p></li>
+<li><p><code>SVR</code> variance</p></li>
+</ul>
+<p><code>Reserved genes Num</code> integer, How many genes would you like to retain for WGCNA analysis after the filtering process? Please note, if this number surpasses the count of genes remaining after filtering, all the filtered genes will be preserved.</p>
+<p><strong>Step by step</strong> <img src="images/Step1-1.png" class="img-fluid"> <img src="images/Step1-2.png" class="img-fluid"> <img src="images/Step1-3.png" class="img-fluid"></p>
+</section>
+<section id="step2.-selection-and-validation-of-the-soft-threshold" class="level2">
+<h2 class="anchored" data-anchor-id="step2.-selection-and-validation-of-the-soft-threshold">Step2. selection and validation of the soft-threshold</h2>
+<p>In the construction of a weighted co-expression network, we need to select an appropriate soft-thresholding value to build a scale-free network. The criteria for judging whether the soft-thresholding value is appropriate generally consider that the closer the mean connectivity is to 0 and the signed R^2 is to 1 under this power value, the closer the network is to a scale-free network. However, the power should not be too large, as a larger power value may lead to a higher false positive rate. Therefore, we usually choose the power value that first crosses the R2 threshold line and has a mean connectivity closest to 0 under this power value as the soft-thresholding value for subsequent analysis.</p>
+<p><strong>Parameters:</strong></p>
+<p><code>R^2 cutoff</code> numeric, cutoff of scale-free topology model fit.</p>
+<p><code>Power type</code> If the recommended power value provided by the software is suitable, select ‘recommend’. If it is found to be unsuitable, choose an appropriate threshold based on the two graphs on the right, then change this option to ‘customized’, and select the threshold you want to use in ‘final power selection’.</p>
+<p><strong>Step by step</strong></p>
+<p><img src="images/Step2-1.png" class="img-fluid"> <img src="images/Step2-2.png" class="img-fluid"></p>
+</section>
+<section id="step3.-one-step-network-construction-and-module-detection." class="level2">
+<h2 class="anchored" data-anchor-id="step3.-one-step-network-construction-and-module-detection.">Step3. One step network construction and module detection.</h2>
+<p><strong>Steps for scale-free network construction</strong>：</p>
+<p>Similarity Matrix Construction: Calculate the correlation between all genes, usually using the Pearson correlation coefficient. This results in a similarity matrix.</p>
+<p>Weighted Similarity Matrix: Transform the similarity matrix into a weighted similarity matrix. This is achieved by raising each element in the similarity matrix to a positive power β (β&gt;1). The choice of β is to make the network satisfy scale-free distribution.</p>
+<p>Topological Overlap Matrix: Calculate the topological overlap between genes, which reflects how similar the neighbors of two genes are. The purpose of this step is to reduce noise and sparsity.</p>
+<p>Gene Module Detection: Use hierarchical clustering methods to cluster the genes in the topological overlap matrix into different modules. These modules are a set of highly co-expressed genes.</p>
+<p><strong>Parameters:</strong></p>
+<p><code>min Module Size</code> The minimum number of genes to form a module implies that if there are not enough genes, they cannot be divided into a module.</p>
+<p><code>module cuttree height</code> Refers to the threshold set on the hierarchical clustering dendrogram, which determines the partitioning of genes into distinct modules.</p>
+<p><code>select max blocksize</code> When calculating correlations, if you input tens of thousands of genes, the calculation requires a large amount of memory. If there is insufficient memory, the calculation will be terminated. At this point, you need to divide the genes into different blocks, calculate separately, divide the modules, and finally merge the modules. Of course, our suggestion is to put as many genes as possible into one block. The table below shows the theoretical relationship between memory size and max block size.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>memory</th>
+<th>block size</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>8G</td>
+<td>5000-10000</td>
+</tr>
+<tr class="even">
+<td>16G</td>
+<td>10000-20000</td>
+</tr>
+<tr class="odd">
+<td>32G</td>
+<td>20000-30000</td>
+</tr>
+<tr class="even">
+<td>64G</td>
+<td>30000-40000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>step by step</strong></p>
+<p><img src="images/Step3-1.png" class="img-fluid"><br>
+<img src="images/Step3-2.png" class="img-fluid"></p>
+</section>
+<section id="step4.-module-trait-relationship." class="level2">
+<h2 class="anchored" data-anchor-id="step4.-module-trait-relationship.">Step4. Module-trait relationship.</h2>
+<p>After dividing genes into different modules, based on the experimental design, we need to see if these modules are associated with the traits we are testing, or with sample classification information. This step can reveal and explore the connection between modules and biological issues, and is an important part of WGCNA analysis.</p>
+<p>Additionally, we provide a simple method for purifying modules. Inspired by <a href="https://www.biorxiv.org/content/10.1101/234062v1">Emily et.al</a> , we also aim to achieve better co-expression network analysis results through iterative WGCNA. However, we did not adopt their method. We simply gradually remove genes with low kME and those that cannot be classified, resulting in a more purified module division.</p>
+<p>To facilitate the reproduction of previous data analysis processes, or to conduct further analysis in R, we have saved the variables prior to module construction.</p>
+<p><strong>Parameters:</strong></p>
+<p>「NOTICE」For iterative WGCNA, Method 1 is not work for now, please use method 2.</p>
+<p><code>KME cutoff</code> numeric, Remove genes with the kME cutoff of each module.</p>
+<p><code>Choose method</code>,<br>
+method 1: not work now<br>
+method 2: recommanded.</p>
+<p><strong>step by step</strong></p>
+<p><img src="images/Step4-1.png" class="img-fluid"><br>
+<img src="images/Step4-2.png" class="img-fluid"><br>
+<img src="images/Step4-3.png" class="img-fluid"><br>
+<img src="images/Step4-4.png" class="img-fluid"></p>
+</section>
+<section id="step5.-interested-module-and-hubgene." class="level2">
+<h2 class="anchored" data-anchor-id="step5.-interested-module-and-hubgene.">Step5. Interested module and hubgene.</h2>
+<p>After obtaining the modules of interest through module-trait, we want to see the specific relationship between the module and the traits. In subsequent steps, we can calculate the correlation between genes within the module and the phenotype to get Gene Significance (GS), and calculate the correlation between the gene and the module eigengene to get Module Membership (MM). A higher MM indicates that the gene is in a hub position in the co-expression network constructed by the module, and a high GS indicates that the gene’s expression pattern is highly correlated with the phenotype, and is likely to affect the formation of the trait. In this way, we have found the key genes controlling the phenotype and the gene co-expression network driven by them.</p>
+<p>If your analysis does not include trait data, you can select the genes with the highest kME values in each module as hubgenes based on the previous kME table. Alternatively, you can group the materials according to the materials, and then try the following steps. However, when determining whether it is a hubgene, you only need to consider MM, not GS, after all, your biological significance is not mainly about sample classification, and the significant relationship between the module and sample classification is not your focus. Your focus should be on the function of each module and the core of the co-expression network. This experimental design suggests that after the module division is completed, perform enrichment analysis for each module, find the module related to the biological issue you are concerned about, and then find the hubgenes of the module via only MM (kME).</p>
+<p><strong>parameters</strong></p>
+<p><code>cutoff of absoulute value of kME</code> Generally, it is required to be above 0.8. If it’s too low, the module division may not be appropriate.</p>
+<p><code>cutoff of absoulute value of GS</code> Generally, it is required to be above 0.5.</p>
+<p><code>weight threshold</code> Generally, it is required to be above 0.02. If the module is large and there are many edge results, the visualization can be quite messy, so you can appropriately increase the weight threshold.</p>
+<p><strong>Step by Step</strong></p>
+<p><img src="images/Step5-1.png" class="img-fluid"><br>
+<img src="images/Step5-2.png" class="img-fluid"><br>
+<img src="images/Step5-3.png" class="img-fluid"><br>
+<img src="images/Step5-4.png" class="img-fluid"><br>
+<img src="images/Step5-5.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="update" class="level1">
+<h1>Update</h1>
+<hr>
+<p><font color="red"><strong>Jan 21 2023</strong></font> <font color="green"><strong>V0.0.6.230121</strong></font></p>
+<ul>
+<li><p>🍿 + New options of input data format.</p></li>
+<li><p>🍿 + Ceil expected count.</p></li>
+<li><p>🍬 + Progress bar in module detection and module-trait step.</p></li>
+<li><p>🐛 + Modified some inappropriate descriptions.</p></li>
+<li><p>⭐️ + Outlier remove.</p></li>
+<li><p>⭐️ + IterativeWGCNA.</p></li>
+<li><p>🍀 + Export parameter.</p></li>
+</ul>
 
 
 </section>
